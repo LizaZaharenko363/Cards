@@ -17,7 +17,6 @@ function play(){
     var img1 = document.createElement('img'); 
     var img2 = document.createElement('img'); 
 
-
     switch(true){
         case(num1 < 4):
             nominal1 = 6;
@@ -80,21 +79,23 @@ function play(){
     if(nominal1!= nominal2){
         playerScore+=nominal1;
         compScore+=nominal2;
-    } else{
-        alert("Try once more");
-    }
+        if(attempt==3){
+            if(playerScore>compScore){
+                alert("You won:)");
+            } 
+            if(playerScore<compScore){
+                alert("You lost:(");
+            }
+            if(playerScore==compScore){
+                alert("Nobody won");
+            }
+        }
+        attempt++;
+    }else alert("Try once more");
 
     document.getElementById('firstCard').src = "img/"+num1+".png";
     document.getElementById('secondCard').src = "img/"+num2+".png";
     document.getElementById('playScore').textContent = ("You have "+playerScore);
     document.getElementById('compScore').textContent = ("Computer has "+compScore);
-    if(attempt==3){
-        if(playerScore>compScore){
-            alert("You won:)");
-        } 
-        if(playerScore<compScore){
-            alert("You lost:(");
-        }
-    }
-    if(nominal1!= nominal2)attempt++;
+
 }
